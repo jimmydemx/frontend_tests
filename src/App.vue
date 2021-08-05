@@ -4,19 +4,17 @@
       <!-- <router-link to="/about">About</router-link> -->
     </div>
 
-    <!-- <router-view/> -->
+    <router-view/>
       <p class="ppp">{{b}}</p>
     <div>this is{{a}}</div>
-    <login/>
+
   </div>
 </template>
 
 <script>
-import login from "@c/pages/Login.vue";
+
 export default {
-    components: {
-        login
-    },
+
     data () {
         return {
             // a: document.documentElement.clientWidth

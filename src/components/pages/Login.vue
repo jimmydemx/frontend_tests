@@ -1,5 +1,7 @@
 <template>
   <div class="login">
+      <p>Welcome</p>
+      <div>don‘t have a account? <a @click="onClickSignup">sign up</a></div>
       <img :src=imgLogin alt="">
 
       <!-- v-model=x:
@@ -16,11 +18,11 @@
             </form-item>
 
             <form-item>
-                <form-button @click="login" :func="'Login'" />
+                <form-button @click="onClickValidate" :func="'Login'" />
             </form-item>
-            <button @click="login">123</button>
-
        </form-verification>
+
+       <p>{{loginState}}</p>
   </div>
 </template>
 
@@ -41,20 +43,25 @@ export default {
             *  form info: userinfo+ rules
             */
             userInfo: {
-                email: "Tom",
-                password: ""
+                email: "j_demx@163.com",
+                password: "123456"
 
             },
             rules: {
                 email: [ { required: true, message: "Input Email Address" } ],
                 password: [ { required: true, message: "Insert your password" } ]
 
-            }
+            },
+
+            /*
+            * login status display
+            */
+            loginState: ""
 
         };
     },
     methods: {
-        login () {
+        onClickValidate () {
             /*
             *   global validation: in verification.vue, there is
             *  "validate" method
@@ -63,15 +70,44 @@ export default {
             this.$refs.loginVerification.validate(valid => {
                 if (valid) {
                     // alert("submit");
-                    this.$axios.post("/auth/log-in", this.userInfo).then(
-                        res => console.log(res.data), error => console.log(error)
-                    // ).catch(
-                    //     (error) => console.log(error)
-                    );
+                    this.login();
                 } else {
                     console.log("error submit!");
                     return false;
                 }
+            });
+        },
+        async login () {
+            var res = await this.$HTTP.login(this.userInfo);
+
+            if (res) {
+                // console.log(res.accessToken);
+                // store accessToken
+                localStorage.setItem("accessToken", "Bearer " + res.accessToken);
+
+                this.$router.push({
+                    name: "Users"
+                });
+            } else {
+                this.loginState = res.data.message;
+                setTimeout(() => {
+                    this.loginState = "";
+                }, 2000);
+            }
+
+            // this.$axios.post("/auth/log-in", this.userInfo).then(
+            //     res => console.log(res.data), error => console.log(error.response)
+            // ).catch(
+            //     (error) => console.log(error)
+            // );
+        },
+
+        onClickSignup () {
+            /*
+            * click can lead towards sign up page
+             */
+            this.$router.push({
+                name: "Signup"
             });
         }
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="button">
-      <button>{{func}}</button>
+      <button @click="OnclickButton">{{func}}</button>
   </div>
 </template>
 
@@ -10,6 +10,11 @@ export default {
         func: {
             type: String,
             default: ""
+        }
+    },
+    methods: {
+        OnclickButton () {
+            this.$emit("click");
         }
     }
 

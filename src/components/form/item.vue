@@ -5,7 +5,8 @@
       <slot></slot>
       <!-- save the verfification error -->
       <p v-if="error">{{error}}</p>
-      <p>{{form.model}}</p>
+      <!-- <p>{{form.model}}</p>
+      <p>{{prop}}</p> -->
   </div>
 </template>
 
