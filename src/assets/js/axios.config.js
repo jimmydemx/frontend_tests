@@ -20,9 +20,10 @@ Object.keys(APIs).forEach(item => {
     var res;
 
     HTTP[item] = async function (
-        params,
+        params = {},
         isFormData = false,
-        config = {}
+        config = {},
+        id
     ) {
         // form-data
         if (params && isFormData) {
@@ -33,7 +34,11 @@ Object.keys(APIs).forEach(item => {
         } else {
             newParams = params;
         }
-
+        // in case id shall be passed
+        if (id) {
+            // console.log(id);
+            url = url + "/" + id;
+        }
         if (method === "put" || method === "post" || method === "patch") {
             try {
                 res = await axios[method](url, newParams, config);

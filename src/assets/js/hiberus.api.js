@@ -22,15 +22,15 @@ const HiberusAPI = {
     },
     usersid: {
         method: "get",
-        url: "/users/{id}"
+        url: "/users"
     },
     usersupdate: {
         method: "put",
-        url: "/users/{id}"
+        url: "/users"
     },
     usersdelete: {
         method: "delete",
-        url: "/users/{id}"
+        url: "/users"
     }
 
 };
