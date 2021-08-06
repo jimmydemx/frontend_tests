@@ -1,10 +1,10 @@
 <template>
   <div class="item">
       <!-- lable -->
-      <label v-if='label'>{{label}}</label>
+      <label class="item-label" v-if='label'>{{label}}</label>
       <slot></slot>
       <!-- save the verfification error -->
-      <p v-if="error">{{error}}</p>
+      <p class="item-error" v-if="error">{{error}}</p>
       <!-- <p>{{form.model}}</p>
       <p>{{prop}}</p> -->
   </div>

@@ -35,20 +35,24 @@ Object.keys(APIs).forEach(item => {
             newParams = params;
         }
         // in case id shall be passed
+        var URL;
         if (id) {
             // console.log(id);
-            url = url + "/" + id;
+            URL = url + "/" + id;
+        } else {
+            URL = url;
         }
+
         if (method === "put" || method === "post" || method === "patch") {
             try {
-                res = await axios[method](url, newParams, config);
+                res = await axios[method](URL, newParams, config);
             } catch (error) {
                 res = error;
             }
         } else if (method === "delete" || method === "get") {
             config.params = newParams;
             try {
-                res = await axios[method](url, config);
+                res = await axios[method](URL, config);
             } catch (error) {
                 res = error;
             }

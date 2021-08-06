@@ -1,0 +1,12 @@
+.item{
+    &-label{
+        color:$bgColor;
+        margin:0
+
+    }
+    &-error{
+        font-size: 0.5rem;
+        color:red;
+    }
+
+}

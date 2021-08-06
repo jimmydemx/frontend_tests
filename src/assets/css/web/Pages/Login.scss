@@ -1,6 +1,6 @@
 .login{
-    display: flex;
-    flex-direction: column;
+    
+    
     
     
     &-title{
@@ -18,14 +18,16 @@
     }
 
     &-img{
-        width: 50%;
+        width: 30%;
         align-self: center;
         margin-top: 0.5rem;
     }
     &-options{
-        align-self: center;
+        float: right;
+        
 
         &-signup{
+            text-align: center;
             >a{
                 font-weight: 700;
                 text-decoration-line: underline;

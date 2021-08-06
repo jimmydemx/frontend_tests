@@ -2,7 +2,7 @@
 
   <div class="users">
       <div class="users-searchbar">
-         <img class="users-searchbar-img" :src="require('@img/logo.png')" alt="">
+         <img class="users-searchbar-img" @click="OnClickLogout"  :src="require('@img/logo.png')" alt="">
          <form-input class="users-searchbar-form-input" v-model="SearchContent" placeholder="Search here"></form-input>
          <dl @click="OnClickDropdown" class="users-searchbar-dropdown">
           <dt>{{SelectSearchItem}}</dt>
@@ -24,6 +24,7 @@
       <div class="users-searchbar-buttons">
             <form-button @click="getMyInfo" :func="'Get My Infomation'"></form-button>
             <form-button  @click="getAllUsersInfo" :func="'Get All Users'"></form-button>
+
       </div>
   </div>
 </template>
@@ -68,11 +69,20 @@ export default {
         },
         OnClickDropdown () {
             this.isClickedDropdown = !this.isClickedDropdown;
+        },
+        OnClickLogout () {
+            this.$router.push({ name: "Logout" });
         }
 
     },
     mounted () {
         var self = this;
+
+        if (localStorage.getItem("accessToken") === null) {
+            this.$router.push({
+                name: "Login"
+            });
+        }
         this.$HTTP.users().then(res => {
             self.AllUsersInfo = res.items;
             console.log(res);

@@ -13,6 +13,10 @@ export default {
     methods: {
         logout () {
             localStorage.removeItem("accessToken");
+            this.$store.dispatch("ChangeLoginState");
+            this.$router.push({
+                name: "Login"
+            });
         },
         backlogin () {
             this.$router.push({
@@ -20,6 +24,17 @@ export default {
             });
         }
 
+    },
+    mounted () {
+        // console.log(this.$store.state.LoginState, localStorage.getItem("accessToken"));
+        if (!this.$store.state.LoginState) {
+            this.$router.push({
+
+                name: "Login"
+            }
+
+            );
+        }
     }
 
 };

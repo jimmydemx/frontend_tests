@@ -24,19 +24,31 @@
     }
     &-options{
         align-self: center;
+        width: 100%;
 
         &-signup{
+            text-align: center;
             >a{
                 font-weight: 700;
                 text-decoration-line: underline;
                 color: $mainColor;
             }
         }
+
+        &-form-item{
+            text-align: center;
+        }
         &-form-button{
 
             text-align: center;
 
         }
+        &-mesg{
+            text-align: center;
+            font-size:0.5rem;
+            color:red;
+        }
+    
     }
     &-notice{
         text-align: center;

@@ -1,23 +1,25 @@
 <template>
   <div class="signup">
       <!-- email, password, name, surname -->
+            <div class="signup-mesg">Sign up Now</div>
+            <div class="signup-form">
+            <form-verification class="signup-form-verification" :model='SignupInfo' :rules="rules" ref="signupVerification">
 
-    <form-verification :model='SignupInfo' :rules="rules" ref="signupVerification">
+            <!-- <form-item :label="Object.keys(SignupInfo)[0]" :prop="Object.keys(SignupInfo)[0]">
+                <form-input v-model="SignupInfo.name" :placeholder="rules[Object.keys(SignupInfo)[0]][0].message"/>
+            </form-item> -->
 
-        <!-- <form-item :label="Object.keys(SignupInfo)[0]" :prop="Object.keys(SignupInfo)[0]">
-            <form-input v-model="SignupInfo.name" :placeholder="rules[Object.keys(SignupInfo)[0]][0].message"/>
-        </form-item> -->
+            <form-item class="signup-form-item" v-for="(value, key, index) in SignupInfo" :key="index"
+            :label="key" :prop="key">
+                <form-input class="signup-form-input" v-model="SignupInfo[key]" :placeholder="rules[key][0].message"/>
+            </form-item>
 
-        <form-item v-for="(value, key, index) in SignupInfo" :key="index"
-        :label="key" :prop="key">
-            <form-input  v-model="SignupInfo[key]" :placeholder="rules[key][0].message"/>
-        </form-item>
-
-         <form-item>
-            <form-button @click="onClickValidate" :func="'Sign up'"></form-button>
-        </form-item>
-    </form-verification>
-    <p>{{signupStatus}}</p>
+            <form-item class="signup-form-item">
+                <form-button class="signup-form-button" @click="onClickValidate" :func="'Sign up'"></form-button>
+            </form-item>
+        </form-verification>
+    </div>
+    <p class="signup-signupStatus">{{signupStatus}}</p>
 
   </div>
 </template>
@@ -80,6 +82,16 @@ export default {
                 this.signupStatus = res.data.message;
                 // console.log("error mesg", res.data.message);
             }
+        }
+    },
+    mounted () {
+        if (this.$store.state.LoginState) {
+            this.$router.push({
+
+                name: "Login"
+            }
+
+            );
         }
     }
 

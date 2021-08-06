@@ -24,6 +24,7 @@
                     <form-button class="login-options-form-button" @click="onClickValidate" :func="'Login'" />
                 </form-item>
         </form-verification>
+        <p class="login-options-mesg">{{loginMesg}}</p>
         </div>
 
         <!-- {{this.$store.state.LoginState}} -->
@@ -87,22 +88,22 @@ export default {
         },
         async login () {
             var res = await this.$HTTP.login(this.userInfo);
-            this.$store.dispatch("ChangeLoginState");
 
-            if (res) {
+            if (res.accessToken) {
                 console.log(res.accessToken);
                 // store accessToken
                 localStorage.setItem("accessToken", "Bearer " + res.accessToken);
-
+                this.$store.dispatch("ChangeLoginState");
                 this.$router.push({
                     name: "Users"
                 });
                 this.loginMesg = "You Have logged in";
             } else {
-                this.loginMesg = res;
-                setTimeout(() => {
-                    this.loginMesg = "";
-                }, 2000);
+                console.log("resssss", res);
+                this.loginMesg = res.data.message;
+                // setTimeout(() => {
+                //     this.loginMesg = "";
+                // }, 2000);
             }
 
             // this.$axios.post("/auth/log-in", this.userInfo).then(

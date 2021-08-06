@@ -2,8 +2,8 @@
   <div id="app">
 
     <router-view/>
-      <p class="ppp">{{b}}</p>
-    <div>this is{{a}}</div>
+      <!-- <p class="ppp">{{b}}</p>
+    <div>this is{{a}}</div> -->
 
   </div>
 </template>
@@ -45,14 +45,14 @@ export default {
   margin-top: 0;
 }
 @media screen and (max-width:599px){
-  //  body{background:orange;}
-   @import '@css/mobile/layout/a.scss';
+  // body{background:orange;}
+   //@import '@css/mobile/layout/a.scss';
    @import "@css/mobile/Pages/index.scss";
    @import "@css/mobile/components/index.scss";
 
 }
 @media screen and (min-width:600px){
-  //  body{background:orange;}
+  // body{background:rgb(0, 102, 255);}
   @import "@css/web/Pages/index.scss";
   @import "@css/web/components/index.scss";
 

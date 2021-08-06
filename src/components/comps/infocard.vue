@@ -36,27 +36,42 @@ export default {
     data () {
         return {
             ActionStatus: ""
+
         };
     },
     methods: {
         async onClickEdit () {
+            var self = this;
             const res = await this.$HTTP.usersupdate(this.userinfo, false, {}, this.userinfo.id);
-            if (res.status === 200) {
+            if (res.email) {
                 this.ActionStatus = "Edit successfully";
+                setTimeout(() => {
+                    self.ActionStatus = "";
+                }, 20000);
             } else {
-                this.ActionStatus = "Failed to Edit";
+                self.ActionStatus = "Failed to Edit";
+                setTimeout(() => {
+                    self.ActionStatus = "";
+                }, 20000);
             }
         },
         async onClickDelete () {
+            var self = this;
             const res = await this.$HTTP.usersdelete({}, false, {}, this.userinfo.id);
             // console.log(res);
             if (res.status === 204) {
                 this.ActionStatus = "Delete successfully";
+                setTimeout(() => {
+                    document.querySelector(".infocard").style.display = "none";
+                    self.ActionStatus = "";
+                }, 2000);
             } else {
-                (
-                    // console.log(res)
-                    this.ActionStatus = res.statusText
-                );
+                self.ActionStatus = res.statusText;
+                // console.log(res)
+
+                setTimeout(() => {
+                    self.ActionStatus = "";
+                }, 2000);
             }
         }
         // async onClickCreate () {
