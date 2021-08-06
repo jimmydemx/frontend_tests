@@ -102,7 +102,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@css/global/style.scss";
-@import "@css/mobile/Pages/Users.scss";
 
 </style>

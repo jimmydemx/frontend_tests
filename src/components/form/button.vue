@@ -22,16 +22,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@css/global/style.scss";
-.button{
-        margin:1em auto;
-    &-style{
-        background-color: $bgColor;
-        font-size: 1rem;
-        border: 0;
-        width:40vw;
-        height:5vh;
 
-    }
-}
 </style>

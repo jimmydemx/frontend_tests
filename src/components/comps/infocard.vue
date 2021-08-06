@@ -70,11 +70,6 @@ export default {
 
 <style lang="scss">
 @import "@css/global/style.scss";
-.infocard{
-    border: 2px $bgColor dotted;
-    width: 80%;
-    margin:0 auto;
-
-}
+@import "@css/mobile/components/infocard.scss";
 
 </style>

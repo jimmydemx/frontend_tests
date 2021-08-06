@@ -33,14 +33,5 @@ export default {
 </script>
 
 <style lang='scss'>
-@import "@css/global/style.scss";
-input{
-    border-width: 0;
-    background-color: $textColor;
-    height: 4vh;
-    width: 55vw;
-    // border-bottom-width: 1px;
-
-}
 
 </style>

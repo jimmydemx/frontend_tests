@@ -39,6 +39,9 @@ export default {
 
 </script>
 <style lang="scss">
+@import "@css/global/style.scss";
+@import "@css/mobile/Pages/index.scss";
+@import "@css/mobile/components/index.scss";
 #app{
   margin-top: 0;
 }
