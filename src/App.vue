@@ -40,19 +40,21 @@ export default {
 </script>
 <style lang="scss">
 @import "@css/global/style.scss";
-@import "@css/mobile/Pages/index.scss";
-@import "@css/mobile/components/index.scss";
+
 #app{
   margin-top: 0;
-}
-@media screen and (min-width:600px){
-  //  body{background:orange;}
-   @import '@css/mobile/layout/a.scss';
-
 }
 @media screen and (max-width:599px){
   //  body{background:orange;}
    @import '@css/mobile/layout/a.scss';
+   @import "@css/mobile/Pages/index.scss";
+   @import "@css/mobile/components/index.scss";
+
+}
+@media screen and (min-width:600px){
+  //  body{background:orange;}
+  @import "@css/web/Pages/index.scss";
+  @import "@css/web/components/index.scss";
 
 }
 </style>
