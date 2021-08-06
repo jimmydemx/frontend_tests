@@ -68,6 +68,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "@css/global/style.scss";
+.infocard{
+    border: 2px $bgColor dotted;
+    width: 80%;
+    margin:0 auto;
+
+}
 
 </style>

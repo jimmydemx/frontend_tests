@@ -1,28 +1,35 @@
 <template>
   <div class="login">
-      <p>Welcome</p>
-      <div>don‘t have a account? <a @click="onClickSignup">sign up</a></div>
-      <img :src=imgLogin alt="">
+      <div class="login-title">
+          <p>Welcome</p>
+      </div>
+      <img class="login-img" :src=imgLogin alt="">
 
-      <!-- v-model=x:
-             v-bind:value=x
-             v-on:input="x = $event.target.value"
-       -->
-       <form-verification :model='userInfo' :rules="rules" ref="loginVerification">
-            <form-item :label="'Email'" :prop="'email'">
-                    <form-input v-model="userInfo.email" placeholder="Input Email Address"/>
-            </form-item>
+      <div class="login-options" v-if="!this.$store.state.LoginState">
+        <div class="login-options-signup">don‘t have a account? <a @click="onClickSignup">sign up</a></div>
+        <!-- v-model=x:
+                v-bind:value=x
+                v-on:input="x = $event.target.value"
+        -->
+        <form-verification class="login-options-form-verification" :model='userInfo' :rules="rules" ref="loginVerification">
+                <form-item class="login-options-form-item" :label="'Email'" :prop="'email'">
+                        <form-input class="login-options-form-input" v-model="userInfo.email" placeholder="Input Email Address"/>
+                </form-item>
 
-            <form-item :label="'Password'" :prop="'password'">
-                    <form-input :type="'password'" v-model="userInfo.password"  placeholder="Insert your Password"/>
-            </form-item>
+                <form-item  class="login-options-form-item" :label="'Password'" :prop="'password'">
+                        <form-input class="login-options-form-input" :type="'password'" v-model="userInfo.password"  placeholder="Insert your Password"/>
+                </form-item>
 
-            <form-item>
-                <form-button @click="onClickValidate" :func="'Login'" />
-            </form-item>
-       </form-verification>
+                <form-item class="login-options-form-item">
+                    <form-button class="login-options-form-button" @click="onClickValidate" :func="'Login'" />
+                </form-item>
+        </form-verification>
+        </div>
 
-       <p>{{loginState}}</p>
+        <!-- {{this.$store.state.LoginState}} -->
+        <p class="login-notice" v-if="this.$store.state.LoginState">You Have Logged in</p>
+        <form-button v-if="this.$store.state.LoginState" @click="onClickUserPage" :func="'Go to User Page'" />
+        <form-button v-if="this.$store.state.LoginState" @click="onClickLogout" :func="'Log out'" />
   </div>
 </template>
 
@@ -56,7 +63,8 @@ export default {
             /*
             * login status display
             */
-            loginState: ""
+
+            loginMesg: ""
 
         };
     },
@@ -79,19 +87,21 @@ export default {
         },
         async login () {
             var res = await this.$HTTP.login(this.userInfo);
+            this.$store.dispatch("ChangeLoginState");
 
             if (res) {
-                // console.log(res.accessToken);
+                console.log(res.accessToken);
                 // store accessToken
                 localStorage.setItem("accessToken", "Bearer " + res.accessToken);
 
                 this.$router.push({
                     name: "Users"
                 });
+                this.loginMesg = "You Have logged in";
             } else {
-                this.loginState = res.data.message;
+                this.loginMesg = res;
                 setTimeout(() => {
-                    this.loginState = "";
+                    this.loginMesg = "";
                 }, 2000);
             }
 
@@ -109,12 +119,23 @@ export default {
             this.$router.push({
                 name: "Signup"
             });
+        },
+        onClickUserPage () {
+            this.$router.push({
+                name: "Users"
+            });
+        },
+        onClickLogout () {
+            localStorage.removeItem("accessToken");
+            this.$store.dispatch("ChangeLoginState");
         }
     }
 
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "@css/global/style.scss";
+@import "@css/mobile/Pages/Login.scss";
 
 </style>

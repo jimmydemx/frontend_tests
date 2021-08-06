@@ -1,0 +1,45 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    
+    
+    &-title{
+        background-color: $mainColor;
+        color:$textColor;
+        font-size:3rem;
+        width: 100%;
+        line-height: 25vh;
+        margin :0;
+       
+      >p{
+          text-align:center;
+          margin:0;
+      }
+    }
+
+    &-img{
+        width: 50%;
+        align-self: center;
+        margin-top: 0.5rem;
+    }
+    &-options{
+        align-self: center;
+
+        &-signup{
+            >a{
+                font-weight: 700;
+                text-decoration-line: underline;
+                color: $mainColor;
+            }
+        }
+        &-form-button{
+
+            text-align: center;
+
+        }
+    }
+    &-notice{
+        text-align: center;
+        color:$bgColor;
+    }
+}

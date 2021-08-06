@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/about">About</router-link> -->
-    </div>
 
     <router-view/>
       <p class="ppp">{{b}}</p>
@@ -42,7 +39,9 @@ export default {
 
 </script>
 <style lang="scss">
-
+#app{
+  margin-top: 0;
+}
 @media screen and (min-width:600px){
   //  body{background:orange;}
    @import '@css/mobile/layout/a.scss';

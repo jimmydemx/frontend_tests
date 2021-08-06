@@ -1,0 +1,53 @@
+.users-searchbar{
+    background-color: $mainColor;
+    line-height:7vh;
+    height:7vh ;
+    display: flex;
+
+    &-img{
+        height: 80%;
+        margin:0 2vw;
+        align-self: center;
+
+    }
+
+    &-form-input{
+        text-align: center;
+        margin-top: 0;
+        margin: 0 2vw ;
+
+    }
+
+    &-dropdown{
+        margin: 0;
+        color: $textColor;
+        text-align: center;
+        flex:auto;
+        >div{
+            margin-top: 0;
+            background-color:$textColor ;
+            z-index: 200;
+
+        }
+        &-list{
+            border-width: 1px;
+            color:$mainColor;
+            margin: 0;
+
+        }
+
+    }
+    &-result{
+        height: 70vh;
+        overflow-y: scroll;
+
+        &-infocar{
+            margin: 0 auto;
+        }
+
+    }
+    &-buttons{
+        display: flex;
+    }
+
+}

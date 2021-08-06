@@ -61,8 +61,8 @@ Object.keys(APIs).forEach(item => {
 axios.interceptors.request.use(config => {
     if (localStorage.getItem("accessToken")) {
         config.headers.Authorization = localStorage.getItem("accessToken");
-        return config;
     }
+    return config;
 }, (error) => {
     return Promise.reject(error);
 });
